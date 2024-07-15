@@ -1,12 +1,29 @@
 package uce.edu.ec.View;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+@Component
 public class Principal extends JFrame {
-    public Principal() {
-        initComponents();
+
+
+    @Autowired
+    private ApplicationContext context;
+
+    public Principal() throws Exception {
+        try {
+            initComponents();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
+
 
     private void initComponents() {
         jPanel1 = new javax.swing.JPanel();
@@ -40,10 +57,27 @@ public class Principal extends JFrame {
         jButton1.setText("CLIENTES");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                    Login login = context.getBean(Login.class);
+                    login.setVisible(true);
+                    dispose();
+            }
+        });
 
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/admin.jpg"))); // NOI18N
         jButton2.setText("ADMINISTRADOR");
+        jButton2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Login login = context.getBean(Login.class);
+                login.setVisible(true);
+                dispose();
+            }
+        });
+
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
