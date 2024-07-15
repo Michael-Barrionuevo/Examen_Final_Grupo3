@@ -1,29 +1,24 @@
 package uce.edu.ec.View;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 @Component
 public class Principal extends JFrame {
 
-
     @Autowired
     private ApplicationContext context;
 
-    public Principal() throws Exception {
-        try {
-            initComponents();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+    public Principal() {
+        initComponents();
     }
-
 
     private void initComponents() {
         jPanel1 = new javax.swing.JPanel();
@@ -58,29 +53,30 @@ public class Principal extends JFrame {
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                    Login login = context.getBean(Login.class);
-                    login.setVisible(true);
-                    dispose();
-            }
-        });
-
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/admin.jpg"))); // NOI18N
-        jButton2.setText("ADMINISTRADOR");
-        jButton2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent evt) {
                 Login login = context.getBean(Login.class);
+                login.setSize(getSize());
+                login.setLocationRelativeTo(null);
                 login.setVisible(true);
                 dispose();
             }
         });
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/admin.jpg"))); // NOI18N
+        jButton2.setText("ADMINISTRADOR");
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Login login = context.getBean(Login.class);
+                login.setSize(getSize());
+                login.setLocationRelativeTo(null);
+                login.setVisible(true);
+                dispose();
+            }
+        });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
                 jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,7 +97,7 @@ public class Principal extends JFrame {
                                 .addContainerGap(200, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,6 +114,7 @@ public class Principal extends JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null); // Centra la ventana
     }
 
     private javax.swing.JButton jButton1;
@@ -126,10 +123,3 @@ public class Principal extends JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
 }
-
-
-
-
-
-
-

@@ -46,6 +46,8 @@ public class Productos extends JFrame {
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
         jButton6.setText("jButton6");
 
         setTitle("Productos a llevar");
@@ -192,6 +194,7 @@ public class Productos extends JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null); // Centra la ventana
     }
 
 }
