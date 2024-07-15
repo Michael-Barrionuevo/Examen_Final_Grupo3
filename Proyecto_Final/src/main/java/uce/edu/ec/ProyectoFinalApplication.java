@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import uce.edu.ec.View.Principal;
 
+
 @SpringBootApplication
 @ComponentScan("uce.edu.ec.View")
 public class ProyectoFinalApplication {
