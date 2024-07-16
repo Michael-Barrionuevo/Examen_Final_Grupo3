@@ -9,6 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import uce.edu.ec.container.Controller;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 @SpringBootApplication
@@ -36,7 +37,6 @@ public class ProyectoFinalApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
         Scanner scanner = new Scanner(System.in);
         int option;
         do {
@@ -47,31 +47,41 @@ public class ProyectoFinalApplication implements CommandLineRunner {
             System.out.println("4. Crear Administrador");
             System.out.println("5. Leer Administrador");
             System.out.println("6. Eliminar Administrador");
+            System.out.println("0. Salir");
 
-            option = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            try {
+                option = scanner.nextInt();
+                scanner.nextLine(); // Consume newline
 
-            switch (option) {
-                case 1:
-                    controller.crearCliente(scanner);
-                    break;
-                case 2:
-                    controller.leerCliente(scanner);
-                    break;
-                case 3:
-                    controller.eliminarCliente(scanner);
-                    break;
-                case 4:
-                    controller.crearAdministrador(scanner);
-                    break;
-                case 5:
-                    controller.leerAdministrador(scanner);
-                    break;
-                case 6:
-                    controller.eliminarAdministrador(scanner);
-                    break;
-                default:
-                    System.out.println("Opción no válida. Intente de nuevo.");
+                switch (option) {
+                    case 1:
+                        controller.crearCliente(scanner);
+                        break;
+                    case 2:
+                        controller.leerCliente(scanner);
+                        break;
+                    case 3:
+                        controller.eliminarCliente(scanner);
+                        break;
+                    case 4:
+                        controller.crearAdministrador(scanner);
+                        break;
+                    case 5:
+                        controller.leerAdministrador(scanner);
+                        break;
+                    case 6:
+                        controller.eliminarAdministrador(scanner);
+                        break;
+                    case 0:
+                        System.out.println("Saliendo...");
+                        break;
+                    default:
+                        System.out.println("Opción no válida. Intente de nuevo.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Entrada inválida. Por favor, ingrese un número.");
+                scanner.nextLine(); // Consume la entrada inválida
+                option = -1; // Reinicia la opción para continuar en el bucle
             }
         } while (option != 0);
         scanner.close();

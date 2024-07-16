@@ -12,15 +12,13 @@ import java.util.Scanner;
 @Component
 public class Controller {
 
-    @Autowired
     private CustomerImpl customerImpl;
+    private AdministratorImpl administratorImpl;
 
     @Autowired
-    private AdministratorImpl AdministratorImpl;
-
-    public Controller(CustomerImpl customerImpl, uce.edu.ec.impl.AdministratorImpl administratorImpl) {
+    public Controller(CustomerImpl customerImpl, AdministratorImpl administratorImpl) {
         this.customerImpl = customerImpl;
-        AdministratorImpl = administratorImpl;
+        this.administratorImpl = administratorImpl;
     }
 
     public void crearCliente(Scanner scanner) {
@@ -63,28 +61,28 @@ public class Controller {
         System.out.println("Contrasenia del Administrador:");
         String contraseniaAdministrador = scanner.nextLine();
         Administrator administrator = new Administrator(nombreAdministrador, contraseniaAdministrador);
-        AdministratorImpl.saveAdministrator(administrator);
-        System.out.println("Vendedor creado con éxito!");
+        administratorImpl.saveAdministrator(administrator);
+        System.out.println("Administrador creado con éxito!");
     }
 
     public void leerAdministrador(Scanner scanner) {
-        System.out.println("ID del Vendedor:");
+        System.out.println("ID del Administrador:");
         Long id = scanner.nextLong();
         scanner.nextLine();
-        Administrator administrator = AdministratorImpl.getAdministratorById(id);
+        Administrator administrator = administratorImpl.getAdministratorById(id);
         if (administrator != null) {
             System.out.println(administrator);
         } else {
-            System.out.println("Vendedor no encontrado.");
+            System.out.println("Administrador no encontrado.");
         }
     }
 
     public void eliminarAdministrador(Scanner scanner) {
-        System.out.println("ID del Vendedor:");
+        System.out.println("ID del Administrador:");
         Long id = scanner.nextLong();
         scanner.nextLine();
-        AdministratorImpl.deleteAdministrator(id);
-        System.out.println("Vendedor eliminado con éxito!");
+        administratorImpl.deleteAdministrator(id);
+        System.out.println("Administrador eliminado con éxito!");
     }
 }
 
