@@ -8,7 +8,7 @@ import uce.edu.ec.View.Principal;
 
 
 @SpringBootApplication
-@ComponentScan("uce.edu.ec.View")
+@ComponentScan({"uce.edu.ec.View", "uce.edu.ec.Container"})
 public class ProyectoFinalApplication {
 
 	public static void main(String[] args) {

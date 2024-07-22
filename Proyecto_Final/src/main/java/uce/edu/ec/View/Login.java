@@ -6,6 +6,8 @@ import org.springframework.context.ApplicationContext;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 @Component
 public class Login extends JFrame {
@@ -61,6 +63,14 @@ public class Login extends JFrame {
         jButton1.setOpaque(true); // Asegura que el fondo sea visible
         jButton1.setBorder(buttonBorder1);
         jButton1.setForeground(Color.BLACK);
+        jButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CrearCuenta crearCuenta = context.getBean(CrearCuenta.class);
+                crearCuenta.setVisible(true);
+                dispose();
+            }
+        });
 
         jButton2.setFont(new Font("Segoe UI", Font.BOLD, 14)); // NOI18N
         jButton2.setText("Ingresar");
